@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -50,6 +52,8 @@ public class PaymentCheckoutPage {
 
 	@FindBy(xpath="(//div[@id='address_list_item0'])[2]") private WebElement suggestion;
 	
+	@FindBy(xpath="//*[text()='Edit']") private WebElement icon_edit;
+	
 	public void enterEmailOnEmailField(String email) {	
 		txt_Email.click();		
 		txt_Email.sendKeys(email);
@@ -59,11 +63,18 @@ public class PaymentCheckoutPage {
 		btn_Continue.click();
 		//WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
 		//wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@fdprocessedid='afsyy']//*[name()='svg']")));
+		////*[text()='Edit']
 	}
-	public void enterFirstNameOnNameField() {		
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click", txt_FirstName);
-		js.executeScript("arguments[0].value='Nantha';", txt_FirstName);
+	public void enterFirstNameOnNameField() {	
+		if(icon_edit.isDisplayed())
+		{
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].click", txt_FirstName);
+			js.executeScript("arguments[0].value='Nantha';", txt_FirstName);	
+		}
+		//WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+		//wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@fdprocessedid='afsyy']//*[name()='svg']")));
+		
 	}
 	public void enterLastNameOnNameField() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -103,7 +114,10 @@ public class PaymentCheckoutPage {
 		//wait.until(ExpectedConditions.elementToBeClickable(btn_Delivery_SubmittoContinue));
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0, 100);");
+		js.executeScript("arguments[0].scrollIntoView(true);", btn_Delivery_SubmittoContinue);
 		js.executeScript("arguments[0].click", btn_Delivery_SubmittoContinue);	
+		
 	}	
 	public void click_toConfirmBillingAddressSameasDeliveryAddress() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -113,7 +127,7 @@ public class PaymentCheckoutPage {
 		//WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
 		//wait.until(ExpectedConditions.elementToBeClickable(btn_DeliveryMethod_SubmitToContinue));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		//js.executeScript("window.scrollBy(0, 100);");
+		js.executeScript("window.scrollBy(0, 100);");
 		//js.executeScript("arguments[0].scrollIntoView(true);", btn_DeliveryMethod_SubmitToContinue);
 		js.executeScript("arguments[0].click", btn_DeliveryMethod_SubmitToContinue);
 	}

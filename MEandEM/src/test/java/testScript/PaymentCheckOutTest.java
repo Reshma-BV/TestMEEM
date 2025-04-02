@@ -30,17 +30,17 @@ public class PaymentCheckOutTest extends Base{
 		pmntcheckoutpage.enterPostCode();
 		pmntcheckoutpage.enterCity();
 		pmntcheckoutpage.click_submittocontinuebtnafterEnteringCustomerDetails();
-		//pmntcheckoutpage.click_toConfirmBillingAddressSameasDeliveryAddress();
-		//pmntcheckoutpage.click_submittoContinueforDeliveryMethod();
+		pmntcheckoutpage.click_toConfirmBillingAddressSameasDeliveryAddress();
+		pmntcheckoutpage.click_submittoContinueforDeliveryMethod();
 		
-		/*pmntcheckoutpage.enterCardNumber("3700 0000 0000 002	");
+		pmntcheckoutpage.enterCardNumber("3700 0000 0000 002	");
 		pmntcheckoutpage.enterExpiryDate("03/30");
 		pmntcheckoutpage.enterSecurityCode("7373");
 		pmntcheckoutpage.enterNameOnCard("Reshma");
 		pmntcheckoutpage.clickOnPayButton();
 		
 		boolean alert_Status=pmntcheckoutpage.isAlertdisplayedforDeclinedPayment();
-		Assert.assertTrue(alert_Status, "Invalid card accepted");*/
+		Assert.assertTrue(alert_Status, "Invalid card accepted");
 	}
 
 }
