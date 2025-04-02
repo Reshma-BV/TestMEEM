@@ -33,9 +33,9 @@ public class PaymentCheckOutTest extends Base{
 		pmntcheckoutpage.click_toConfirmBillingAddressSameasDeliveryAddress();
 		pmntcheckoutpage.click_submittoContinueforDeliveryMethod();
 		
-		pmntcheckoutpage.enterCardNumber("3700 0000 0000 002	");
+		pmntcheckoutpage.enterCardNumber("3700 0000 0000 0001");
 		pmntcheckoutpage.enterExpiryDate("03/30");
-		pmntcheckoutpage.enterSecurityCode("7373");
+		pmntcheckoutpage.enterSecurityCode("737");
 		pmntcheckoutpage.enterNameOnCard("Reshma");
 		pmntcheckoutpage.clickOnPayButton();
 		
