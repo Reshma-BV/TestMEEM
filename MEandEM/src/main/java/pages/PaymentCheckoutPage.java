@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -33,7 +34,7 @@ public class PaymentCheckoutPage {
 	@FindBy(xpath="//*[@name='regionCode']") private WebElement drpdwn_Region;
 	@FindBy(xpath="//*[@name='postcode']") private WebElement txt_PostCode;
 	@FindBy(xpath="//*[@name='city']") private WebElement txt_City;
-	@FindBy(xpath="(//*[text()='Submit to Continue'])[1]") private WebElement btn_Delivery_SubmittoContinue;
+	@FindBy(css ="div[class='mt-16 flex flex-col-reverse gap-8 sm:flex-row sm:gap-12'] span[class='type-body-sm z-10']") private WebElement btn_Delivery_SubmittoContinue;
 	
 	@FindBy(xpath="//span[normalize-space()='Submit to Continue']") private WebElement btn_Billing_SubmitToContinue;
 	
@@ -53,6 +54,7 @@ public class PaymentCheckoutPage {
 	@FindBy(xpath="(//div[@id='address_list_item0'])[2]") private WebElement suggestion;
 	
 	@FindBy(xpath="//*[text()='Edit']") private WebElement icon_edit;
+	@FindBy(xpath="//iframe[@class='js-iframe' and @title='Iframe for card number']") private WebElement iframe_cardnum;
 	
 	public void enterEmailOnEmailField(String email) {	
 		txt_Email.click();		
@@ -61,30 +63,24 @@ public class PaymentCheckoutPage {
 	public void clickOnContinueButtonAfterEmail()
 	{
 		btn_Continue.click();
-		//WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
-		//wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@fdprocessedid='afsyy']//*[name()='svg']")));
-		////*[text()='Edit']
 	}
 	public void enterFirstNameOnNameField() {	
 		if(icon_edit.isDisplayed())
 		{
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("arguments[0].click", txt_FirstName);
-			js.executeScript("arguments[0].value='Nantha';", txt_FirstName);	
+			js.executeScript("arguments[0].value='Na1';", txt_FirstName);	
 		}
-		//WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
-		//wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@fdprocessedid='afsyy']//*[name()='svg']")));
-		
 	}
 	public void enterLastNameOnNameField() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click", txt_LastName);
-		js.executeScript("arguments[0].value='N';", txt_LastName);
+		js.executeScript("arguments[0].value='N2';", txt_LastName);
 	}
 	public void enterPhoneNumber() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click", txt_PhoneNumber);
-		js.executeScript("arguments[0].value='987654321';", txt_PhoneNumber);
+		js.executeScript("arguments[0].value='9876543210';", txt_PhoneNumber);
 	}
 	public void selectCountryName() {
 		Select countrydrpdwn=new Select(drpdwn_Country);
@@ -93,30 +89,27 @@ public class PaymentCheckoutPage {
 	public void enterAddressOnAddressLine1() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click", txt_AddressLine1);
-		js.executeScript("arguments[0].value='stratford';", txt_AddressLine1);
+		js.executeScript("arguments[0].value='stratford1';", txt_AddressLine1);
 	}
 	public void selectRegion() {
 		Select selectregion=new Select(drpdwn_Region);
-		selectregion.selectByValue("GB-ENG");
+		selectregion.selectByValue("GB-SCT");
 	}
 	public void enterPostCode() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click", txt_PostCode);
-		js.executeScript("arguments[0].value='E152RS';", txt_PostCode);
+		js.executeScript("arguments[0].value='E112RS';", txt_PostCode);
 	}
 	public void enterCity() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click", txt_City);
-		js.executeScript("arguments[0].value='StartFord';", txt_City);	
+		js.executeScript("arguments[0].value='StartFordCentre';", txt_City);	
 	}
 	public void click_submittocontinuebtnafterEnteringCustomerDetails() {
-		//WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
-		//wait.until(ExpectedConditions.elementToBeClickable(btn_Delivery_SubmittoContinue));
-		
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0, 100);");
-		js.executeScript("arguments[0].scrollIntoView(true);", btn_Delivery_SubmittoContinue);
-		js.executeScript("arguments[0].click", btn_Delivery_SubmittoContinue);	
+		Actions act=new Actions(driver);
+		for(int i=0;i<=6;i++) {
+			act.moveToElement(btn_DeliveryMethod_SubmitToContinue).click().perform();
+		}	
 		
 	}	
 	public void click_toConfirmBillingAddressSameasDeliveryAddress() {
@@ -128,12 +121,13 @@ public class PaymentCheckoutPage {
 		//wait.until(ExpectedConditions.elementToBeClickable(btn_DeliveryMethod_SubmitToContinue));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0, 100);");
-		//js.executeScript("arguments[0].scrollIntoView(true);", btn_DeliveryMethod_SubmitToContinue);
+		js.executeScript("arguments[0].scrollIntoView(true);", btn_DeliveryMethod_SubmitToContinue);
 		js.executeScript("arguments[0].click", btn_DeliveryMethod_SubmitToContinue);
 	}
 	public void enterCardNumber(String cardnumber) {		
-		//driver.switchTo().frame(driver.findElement(By.xpath("//*[@class='js-iframe']")));
+		//driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='js-iframe' and @title='Iframe for card number']")));
 		txt_CardNumber.sendKeys(cardnumber);
+		driver.switchTo().defaultContent();
 	}
 	public void enterExpiryDate(String date) {
 		txt_Expirydate.sendKeys(date);

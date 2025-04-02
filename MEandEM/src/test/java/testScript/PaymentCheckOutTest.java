@@ -19,7 +19,7 @@ public class PaymentCheckOutTest extends Base{
 		productpage.click_Checkout();
 		
 		PaymentCheckoutPage pmntcheckoutpage=new PaymentCheckoutPage(driver);
-		pmntcheckoutpage.enterEmailOnEmailField("niya@gmail.com");
+		pmntcheckoutpage.enterEmailOnEmailField("niya1@gmail.com");
 		pmntcheckoutpage.clickOnContinueButtonAfterEmail();
 		pmntcheckoutpage.enterFirstNameOnNameField();
 		pmntcheckoutpage.enterLastNameOnNameField();
