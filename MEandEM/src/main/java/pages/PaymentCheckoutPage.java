@@ -36,7 +36,7 @@ public class PaymentCheckoutPage {
 	@FindBy(xpath="//*[@name='city']") private WebElement txt_City;
 	@FindBy(css ="div[class='mt-16 flex flex-col-reverse gap-8 sm:flex-row sm:gap-12'] span[class='type-body-sm z-10']") private WebElement btn_Delivery_SubmittoContinue;
 	
-	@FindBy(xpath="//span[normalize-space()='Submit to Continue']") private WebElement btn_Billing_SubmitToContinue;
+	@FindBy(css="button[type='button'] span[class='type-body-sm z-10']") private WebElement btn_Billing_SubmitToContinue;
 	
 	@FindBy(xpath="//span[normalize-space()='Submit to Continue']") private WebElement btn_DeliveryMethod_SubmitToContinue;
 	
@@ -54,8 +54,10 @@ public class PaymentCheckoutPage {
 	@FindBy(xpath="(//div[@id='address_list_item0'])[2]") private WebElement suggestion;
 	
 	@FindBy(xpath="//*[text()='Edit']") private WebElement icon_edit;
+	@FindBy(xpath="//span[normalize-space()='3. Billing Address']") private WebElement edit2;
+	@FindBy(xpath="//label[@for='billingAddressUsePrePopulated']") private WebElement radio1;
 	@FindBy(xpath="//iframe[@class='js-iframe' and @title='Iframe for card number']") private WebElement iframe_cardnum;
-	
+	@FindBy(css="div[id='checkout-address-:r2a:'] button[class='type-body-sm inline-flex flex-wrap items-center gap-2'] svg") private WebElement edit3;
 	public void enterEmailOnEmailField(String email) {	
 		txt_Email.click();		
 		txt_Email.sendKeys(email);
@@ -109,20 +111,26 @@ public class PaymentCheckoutPage {
 		Actions act=new Actions(driver);
 		for(int i=0;i<=6;i++) {
 			act.moveToElement(btn_DeliveryMethod_SubmitToContinue).click().perform();
-		}	
-		
+		}			
 	}	
 	public void click_toConfirmBillingAddressSameasDeliveryAddress() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click", btn_Billing_SubmitToContinue);
+		
+		Actions act=new Actions(driver);		
+		act.moveToElement(btn_Billing_SubmitToContinue).click().perform();
+		
 	}
 	public void click_submittoContinueforDeliveryMethod() {
 		//WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
 		//wait.until(ExpectedConditions.elementToBeClickable(btn_DeliveryMethod_SubmitToContinue));
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		/*JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollBy(0, 100);");
 		js.executeScript("arguments[0].scrollIntoView(true);", btn_DeliveryMethod_SubmitToContinue);
 		js.executeScript("arguments[0].click", btn_DeliveryMethod_SubmitToContinue);
+		if(edit3.isDisplayed()) {
+		Actions act=new Actions(driver);
+		
+		act.moveToElement(btn_DeliveryMethod_SubmitToContinue).click().perform();
+		}*/
 	}
 	public void enterCardNumber(String cardnumber) {		
 		//driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='js-iframe' and @title='Iframe for card number']")));
