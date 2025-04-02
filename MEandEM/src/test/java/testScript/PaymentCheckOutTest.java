@@ -8,10 +8,7 @@ import pages.PaymentCheckoutPage;
 import pages.ProductPage;
 
 public class PaymentCheckOutTest extends Base{
-	/*@Test
-	public void verifyCheckoutWithHappyPath() {
-		
-	}*/
+	
 	@Test
 	public void verifyCheckoutWithUnhappyPath() {
 		ProductPage productpage=new ProductPage(driver);
@@ -33,10 +30,8 @@ public class PaymentCheckOutTest extends Base{
 		pmntcheckoutpage.enterPostCode();
 		pmntcheckoutpage.enterCity();
 		pmntcheckoutpage.click_submittocontinuebtnafterEnteringCustomerDetails();
-		pmntcheckoutpage.click_submittocontinuebtnafterEnteringCustomerDetails();
-
-		pmntcheckoutpage.click_toConfirmBillingAddressSameasDeliveryAddress();
-		pmntcheckoutpage.click_submittoContinueforDeliveryMethod();
+		//pmntcheckoutpage.click_toConfirmBillingAddressSameasDeliveryAddress();
+		//pmntcheckoutpage.click_submittoContinueforDeliveryMethod();
 		
 		/*pmntcheckoutpage.enterCardNumber("3700 0000 0000 002	");
 		pmntcheckoutpage.enterExpiryDate("03/30");

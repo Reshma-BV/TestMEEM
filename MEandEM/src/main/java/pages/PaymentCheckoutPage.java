@@ -31,16 +31,16 @@ public class PaymentCheckoutPage {
 	@FindBy(xpath="//*[@name='regionCode']") private WebElement drpdwn_Region;
 	@FindBy(xpath="//*[@name='postcode']") private WebElement txt_PostCode;
 	@FindBy(xpath="//*[@name='city']") private WebElement txt_City;
-	@FindBy(xpath="//button[@type='submit']//span[@class='type-body-sm z-10'][normalize-space()='Submit to Continue']") private WebElement btn_Delivery_SubmittoContinue;
+	@FindBy(xpath="(//*[text()='Submit to Continue'])[1]") private WebElement btn_Delivery_SubmittoContinue;
 	
 	@FindBy(xpath="//span[normalize-space()='Submit to Continue']") private WebElement btn_Billing_SubmitToContinue;
 	
 	@FindBy(xpath="//span[normalize-space()='Submit to Continue']") private WebElement btn_DeliveryMethod_SubmitToContinue;
 	
-	@FindBy(xpath="(//*[@class='adyen-checkout__input-wrapper'])[1]") private WebElement txt_CardNumber;	
-	@FindBy(xpath="//input[contains(@id,'adyen-checkout-encryptedExpiryDate-1743497059454')]") private WebElement txt_Expirydate;
-	@FindBy(xpath="//input[contains(@id,'adyen-checkout-encryptedSecurityCode-1743497059455')]") private WebElement txt_SecurityCode;
-	@FindBy(xpath="//input[contains(@id,'adyen-checkout-holderName-1743497059456')]") private WebElement txt_NameOnCard;
+	@FindBy(xpath="//input[@aria-label='Card number']") private WebElement txt_CardNumber;
+	@FindBy(xpath="//input[@aria-label='Expiry date']") private WebElement txt_Expirydate;
+	@FindBy(xpath="//input[@aria-label='Security code']") private WebElement txt_SecurityCode;
+	@FindBy(xpath="//input[@name='holderName']") private WebElement txt_NameOnCard;
 	@FindBy(xpath="//*[text()='Pay ']") private WebElement btn_Pay;
 	
 	@FindBy(xpath="//*[@id='primary']") private WebElement btn_gpay;
@@ -99,11 +99,11 @@ public class PaymentCheckoutPage {
 		js.executeScript("arguments[0].value='StartFord';", txt_City);	
 	}
 	public void click_submittocontinuebtnafterEnteringCustomerDetails() {
-		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.elementToBeClickable(btn_Delivery_SubmittoContinue));
-		//btn_Delivery_SubmittoContinue.click();
+		//WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+		//wait.until(ExpectedConditions.elementToBeClickable(btn_Delivery_SubmittoContinue));
+		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click", btn_Delivery_SubmittoContinue);		
+		js.executeScript("arguments[0].click", btn_Delivery_SubmittoContinue);	
 	}	
 	public void click_toConfirmBillingAddressSameasDeliveryAddress() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
