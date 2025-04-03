@@ -5,8 +5,8 @@
     <classes>
       <class name="testScript.PaymentCheckOutTest">
         <methods>
-          <include name="verifyCheckoutWithUnhappyPath"/>
           <include name="initializeBrowser"/>
+          <include name="verifyCheckoutWithUnHappyPath"/>
           <include name="tearDown"/>
         </methods>
       </class> <!-- testScript.PaymentCheckOutTest -->
